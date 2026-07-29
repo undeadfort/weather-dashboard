@@ -63,7 +63,7 @@ Maven dependencies and `weather-dashboard.db` for the saved SQLite data.
 
 - Windows, macOS, or Linux
 - JDK 21 or newer
-- Maven, or the included Maven wrapper
+- Maven 3.9 or newer
 - Internet connection for live weather information
 
 No weather API key is required.
@@ -83,9 +83,9 @@ The application automatically creates `weather-dashboard.db` if the database fil
 ## Maven Commands
 
 I used Windows for this project. From the project folder, the app can be started
-with `.\mvnw.cmd clean javafx:run`.
+with `mvn clean javafx:run`.
 
-The tests can be run with `.\mvnw.cmd test`. In IntelliJ, you can also
+The tests can be run with `mvn test`. In IntelliJ, you can also
 right-click the `src/test` folder and select **Run Tests**.
 
 The current test suite verifies:
