@@ -8,6 +8,11 @@ Weather Dashboard is a native JavaFX desktop application that retrieves current 
 
 ![Weather Dashboard main screen](weatherdashboard/SCREENSHOTS/weather-dashboard-main.png)
 
+## Project Documentation
+
+The complete Word report is available here:
+[Weather Dashboard Project Documentation](weatherdashboard/Weather%20Dashboard%20Project%20Documentation.docx).
+
 ## Features
 
 - Search for weather using a five-digit U.S. ZIP code
