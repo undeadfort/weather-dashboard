@@ -59,25 +59,19 @@ The favorite-location system demonstrates all four required database operations:
 - Zippopotam.us ZIP code location lookup
 - IntelliJ IDEA
 
-## Project Structure
+## How the Code Is Organized
 
-```text
-Weather Dashboard Project DRAFT/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── database/     SQLite connection and DAO classes
-│   │   │   ├── model/        Weather and favorite-location models
-│   │   │   ├── service/      Weather API communication
-│   │   │   ├── util/         Validation and unit conversion utilities
-│   │   │   └── application and controller classes
-│   │   └── resources/        FXML, CSS, and application icon
-│   └── test/
-│       └── java/              JUnit tests
-├── pom.xml
-├── weather-dashboard.db
-└── README.md
-```
+Most of the program is inside `src/main`. I separated the Java classes by what
+they are responsible for:
+
+- `database` handles SQLite, saved favorites, and application settings.
+- `model` contains the objects used to hold weather and forecast information.
+- `service` sends the web requests and reads the weather data.
+- `util` contains ZIP-code validation and unit conversions.
+- `resources` contains the FXML layout, CSS design, and application icon.
+
+The JUnit tests are under `src/test`. The project also includes `pom.xml` for
+Maven dependencies and `weather-dashboard.db` for the saved SQLite data.
 
 ## Requirements
 
