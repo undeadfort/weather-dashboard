@@ -1,4 +1,4 @@
-# Weather Dashboard
+# Weather Dashboard - By Pablo Gallardo
 
 **Version 1.0 — Mostly Sunny**
 
@@ -7,10 +7,6 @@ Weather Dashboard is a native JavaFX desktop application that retrieves current 
 ## Application Screenshot
 
 ![Weather Dashboard main screen](SCREENSHOTS/weather-dashboard-main.png)
-
-## Student
-
-**Pablo Gallardo**
 
 ## Features
 
