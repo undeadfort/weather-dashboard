@@ -5,7 +5,7 @@
 
 .application-window {
     -fx-background-color: #0d0d0d;
-    -fx-background-radius: 12px;
+    -fx-background-radius: 0;
 }
 
 .custom-title-bar {
