@@ -30,14 +30,10 @@ Weather Dashboard is a native JavaFX desktop application that retrieves current 
 
 ## CRUD Operations
 
-The favorite-location system demonstrates all four required database operations:
-
-| Operation | Application behavior |
-| --- | --- |
-| Create | Add a ZIP code to the favorites list |
-| Read | Load and display saved favorites from SQLite |
-| Update | Rename a saved favorite |
-| Delete | Remove one favorite or reset all favorites |
+- Create: Add a ZIP code to favorites.
+- Read: View the favorites saved in SQLite.
+- Update: Rename a favorite.
+- Delete: Remove one favorite or reset the list.
 
 ## Technologies Used
 
