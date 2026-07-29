@@ -131,6 +131,10 @@ The database is initialized automatically when the application launches.
 - Network and weather-service errors display user-friendly messages.
 - Database errors are caught so the application can remain open.
 
+## UI Inspiration
+
+The interface was inspired by this [Weather Forecast Dashboard design on Figma Community](https://www.figma.com/community/file/1410567203716932869/weather-forecast-dashboard). I adapted the layout for my JavaFX desktop application and changed the controls and features to fit my project.
+
 ## Data Sources
 
 Weather data is provided by [Open-Meteo](https://open-meteo.com/). U.S. ZIP code location information is provided by [Zippopotam.us](https://www.zippopotam.us/).
