@@ -80,29 +80,13 @@ No weather API key is required.
 
 The application automatically creates `weather-dashboard.db` if the database file does not already exist.
 
-## Running with Maven
+## Maven Commands
 
-On Windows:
+I used Windows for this project. From the project folder, the app can be started
+with `.\mvnw.cmd clean javafx:run`.
 
-```powershell
-.\mvnw.cmd clean javafx:run
-```
-
-On macOS or Linux:
-
-```bash
-./mvnw clean javafx:run
-```
-
-## Running the Tests
-
-Run all JUnit tests with:
-
-```powershell
-.\mvnw.cmd test
-```
-
-You can also right-click the `src/test` folder in IntelliJ IDEA and select **Run Tests**.
+The tests can be run with `.\mvnw.cmd test`. In IntelliJ, you can also
+right-click the `src/test` folder and select **Run Tests**.
 
 The current test suite verifies:
 
