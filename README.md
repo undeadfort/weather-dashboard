@@ -6,7 +6,7 @@ Weather Dashboard is a native JavaFX desktop application that retrieves current 
 
 ## Application Screenshot
 
-![Weather Dashboard main screen](docs/screenshots/weather-dashboard-main.png)
+![Weather Dashboard main screen](SCREENSHOTS/weather-dashboard-main.png)
 
 ## Student
 
