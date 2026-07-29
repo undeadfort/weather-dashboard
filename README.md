@@ -45,18 +45,12 @@ The favorite-location system demonstrates all four required database operations:
 
 ## Technologies Used
 
-- Java 21
-- JavaFX 21
-- FXML
-- CSS
+- Java 21 and JavaFX 21 with FXML and CSS
 - Maven
-- SQLite
-- JDBC
-- Jackson JSON processing
-- Java HTTP Client
+- SQLite with JDBC
+- Jackson and the Java HTTP Client
 - JUnit 5
-- Open-Meteo weather data
-- Zippopotam.us ZIP code location lookup
+- Open-Meteo and Zippopotam.us
 - IntelliJ IDEA
 
 ## How the Code Is Organized
