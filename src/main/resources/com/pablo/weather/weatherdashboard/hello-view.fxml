@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressIndicator?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+
+<StackPane stylesheets="@styles.css"
+           xmlns="http://javafx.com/javafx"
+           xmlns:fx="http://javafx.com/fxml"
+           fx:controller="com.pablo.weather.weatherdashboard.WeatherDashboardController">
+
+<BorderPane fx:id="dashboardRoot">
+
+    <left>
+        <VBox fx:id="sidebar"
+              alignment="TOP_CENTER"
+              spacing="22"
+              prefWidth="82"
+              styleClass="sidebar">
+
+            <padding>
+                <Insets top="28" right="12" bottom="20" left="12"/>
+            </padding>
+
+            <StackPane minWidth="42"
+                       prefWidth="42"
+                       maxWidth="42"
+                       minHeight="42"
+                       prefHeight="42"
+                       maxHeight="42"
+                       onMouseClicked="#showAbout"
+                       styleClass="sidebar-brand-logo">
+                <ImageView fitWidth="30"
+                           fitHeight="30"
+                           preserveRatio="true"
+                           smooth="true">
+                    <image>
+                        <Image url="@weather-icon.png"/>
+                    </image>
+                </ImageView>
+            </StackPane>
+
+            <Button fx:id="homeButton"
+                    onAction="#showDashboard"
+                    styleClass="nav-button">
+                <graphic>
+                    <SVGPath content="M3 10L12 3L21 10 M5.5 11V18Q5.5 21 9 21H15Q18.5 21 18.5 18V11 M8.5 14H15.5 M8.5 17H15.5"
+                             styleClass="home-dashboard-icon"/>
+                </graphic>
+            </Button>
+
+            <Button onAction="#showSettings"
+                    styleClass="nav-button">
+                <graphic>
+                    <SVGPath fillRule="EVEN_ODD"
+                             content="M9 0H15L16 3.1L18.1 4L21 2.5L25.5 7L24 9.9L24.9 12L28 13V19L24.9 20L24 22.1L25.5 25L21 29.5L18.1 28L16 28.9L15 32H9L8 28.9L5.9 28L3 29.5L-1.5 25L0 22.1L-0.9 20L-4 19V13L-0.9 12L0 9.9L-1.5 7L3 2.5L5.9 4L8 3.1ZM12 9A7 7 0 1 0 12 23A7 7 0 1 0 12 9Z"
+                             styleClass="settings-gear-icon"/>
+                </graphic>
+            </Button>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <VBox alignment="CENTER"
+                  spacing="11"
+                  styleClass="help-area">
+
+                <Separator styleClass="help-divider"/>
+
+                <Button text="?"
+                        onAction="#showHelp"
+                        styleClass="help-button"/>
+            </VBox>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox fx:id="dashboardContent"
+              spacing="22"
+              styleClass="dashboard-content">
+
+            <padding>
+                <Insets top="24"
+                        right="30"
+                        bottom="24"
+                        left="30"/>
+            </padding>
+
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT" spacing="16">
+
+                    <Label fx:id="dashboardTitle"
+                           text="Good Morning"
+                           styleClass="dashboard-title"/>
+
+                    <Region HBox.hgrow="ALWAYS"/>
+
+                    <HBox fx:id="searchContainer"
+                          alignment="CENTER_LEFT"
+                          spacing="10"
+                          styleClass="expandable-search">
+
+                        <TextField fx:id="zipCodeField"
+                                   promptText="Search ZIP code"
+                                   prefWidth="230"
+                                   onAction="#searchWeather"
+                                   styleClass="search-field"/>
+
+                        <Button fx:id="searchButton"
+                                text="Search"
+                                onAction="#searchWeather"
+                                styleClass="search-button"/>
+                    </HBox>
+                </HBox>
+
+                <!-- Top row -->
+                <HBox spacing="20">
+
+                    <!-- Current weather -->
+                    <VBox spacing="14"
+                          minWidth="400"
+                          prefWidth="400"
+                          prefHeight="270"
+                          styleClass="dashboard-card">
+
+                        <HBox alignment="CENTER_LEFT" spacing="8">
+                            <VBox spacing="1">
+                                <Label fx:id="currentWeatherDayLabel"
+                                       text="Sunday"
+                                       styleClass="section-title"/>
+                                <Label fx:id="currentWeatherDateTimeLabel"
+                                       text="27 Jul, 2026 &#x2022; 9:47 PM"
+                                       styleClass="current-date-time"/>
+                            </VBox>
+
+                            <Button fx:id="refreshWeatherButton"
+                                    disable="true"
+                                    onAction="#refreshCurrentWeather"
+                                    styleClass="weather-refresh-button">
+                                <graphic>
+                                    <SVGPath content="M16.5 5.5A7 7 0 1 0 18 14 M16.5 5.5V10H12"
+                                             styleClass="weather-refresh-icon"/>
+                                </graphic>
+                            </Button>
+
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <VBox alignment="CENTER_RIGHT" spacing="5">
+                                <Button fx:id="unitToggleButton"
+                                        text="&#176;F  &#x21C4;"
+                                        onAction="#toggleTemperatureUnit"
+                                        styleClass="unit-toggle"/>
+                                <Button fx:id="speedUnitToggleButton"
+                                        text="mph  &#x21C4;"
+                                        onAction="#toggleWindSpeedUnit"
+                                        styleClass="unit-toggle"/>
+                            </VBox>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT"
+                              spacing="18"
+                              VBox.vgrow="ALWAYS">
+
+                            <VBox alignment="CENTER"
+                                  spacing="18"
+                                  minWidth="132"
+                                  prefWidth="132">
+                                <StackPane alignment="CENTER"
+                                           minWidth="88"
+                                           prefWidth="88"
+                                           maxWidth="88"
+                                           minHeight="82"
+                                           prefHeight="82"
+                                           maxHeight="82">
+                                    <SVGPath fx:id="weatherIcon"
+                                             content="M19.35 10.04C18.67 6.59 15.64 4 12 4C9.11 4 6.6 5.64 5.35 8.04C2.34 8.36 0 10.9 0 14C0 17.31 2.69 20 6 20H19C21.76 20 24 17.76 24 15C24 12.36 21.95 10.22 19.35 10.04Z"
+                                             styleClass="weather-svg"/>
+                                </StackPane>
+
+                                <HBox alignment="CENTER_LEFT"
+                                      spacing="6"
+                                      maxWidth="-Infinity"
+                                      styleClass="location-badge">
+                                    <SVGPath content="M6 0C2.7 0 0 2.7 0 6C0 10.3 6 16 6 16C6 16 12 10.3 12 6C12 2.7 9.3 0 6 0ZM6 3.5A2.5 2.5 0 1 1 6 8.5A2.5 2.5 0 1 1 6 3.5Z"
+                                             fillRule="EVEN_ODD"
+                                             styleClass="location-pin"/>
+                                    <Label fx:id="locationLabel"
+                                           text="N/A"
+                                           styleClass="location-label"/>
+                                </HBox>
+                            </VBox>
+
+                            <VBox alignment="CENTER_LEFT"
+                                  spacing="5"
+                                  HBox.hgrow="ALWAYS">
+                                <Label fx:id="temperatureLabel"
+                                       text="--&#176;"
+                                       minWidth="132"
+                                       styleClass="temperature"/>
+
+                                <Label fx:id="conditionLabel"
+                                       text="No weather loaded"
+                                       styleClass="card-text, condition-text"/>
+                            </VBox>
+                        </HBox>
+
+                        <StackPane>
+                            <Label fx:id="locationDetailLabel"
+                                   text="Search for a ZIP code to begin."
+                                   wrapText="true"
+                                   maxWidth="255"
+                                   alignment="CENTER"
+                                   textAlignment="CENTER"
+                                   StackPane.alignment="CENTER"
+                                   styleClass="card-text, location-detail"/>
+
+                            <Label fx:id="liveBadge"
+                                    text="OFFLINE"
+                                    StackPane.alignment="CENTER_RIGHT"
+                                    styleClass="live-badge, offline-badge"/>
+                        </StackPane>
+                    </VBox>
+
+                    <!-- Highlights -->
+                    <VBox spacing="14"
+                          HBox.hgrow="ALWAYS"
+                          styleClass="dashboard-card">
+
+                        <Label text="Today's Highlights"
+                               maxWidth="Infinity"
+                               alignment="CENTER"
+                               styleClass="section-title"/>
+
+                        <GridPane hgap="12"
+                                  vgap="12"
+                                  VBox.vgrow="ALWAYS">
+
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="33.333"/>
+                                <ColumnConstraints percentWidth="33.333"/>
+                                <ColumnConstraints percentWidth="33.334"/>
+                            </columnConstraints>
+
+                            <VBox maxWidth="Infinity"
+                                  GridPane.columnIndex="0"
+                                  GridPane.rowIndex="0"
+                                  styleClass="highlight-card">
+                                <HBox alignment="CENTER_LEFT" spacing="7">
+                                    <SVGPath styleClass="humidity-icon"
+                                             fillRule="EVEN_ODD"
+                                             content="M8 1A7 7 0 1 0 8 15A7 7 0 1 0 8 1ZM8 3A5 5 0 1 1 8 13A5 5 0 1 1 8 3ZM5 5A1.4 1.4 0 1 0 5 7.8A1.4 1.4 0 1 0 5 5ZM11 8.2A1.4 1.4 0 1 0 11 11A1.4 1.4 0 1 0 11 8.2ZM5.8 11.5L10.2 4.5H12L7.6 11.5ZM17 0C17 0 14 4 14 6.2A3 3 0 1 0 20 6.2C20 4 17 0 17 0ZM21 6C21 6 18 10 18 12.2A3 3 0 1 0 24 12.2C24 10 21 6 21 6Z"/>
+                                    <Label text="Humidity"
+                                           styleClass="metric-name"/>
+                                </HBox>
+
+                                <Label fx:id="humidityLabel"
+                                       text="--%"
+                                       styleClass="metric-value"/>
+                            </VBox>
+
+                            <VBox maxWidth="Infinity"
+                                  GridPane.columnIndex="1"
+                                  GridPane.rowIndex="0"
+                                  styleClass="highlight-card">
+                                <HBox alignment="CENTER_LEFT" spacing="7">
+                                    <SVGPath styleClass="feels-like-icon"
+                                             fillRule="EVEN_ODD"
+                                             content="M4 1A3 3 0 0 0 1 4V12.3A5 5 0 1 0 7 12.3V4A3 3 0 0 0 4 1ZM3 4A1 1 0 0 1 5 4V13.4L5.7 13.9A3 3 0 1 1 2.3 13.9L3 13.4ZM4 7A1 1 0 0 0 3 8V13.8A2 2 0 1 0 5 13.8V8A1 1 0 0 0 4 7ZM13 2A2.5 2.5 0 1 0 13 7A2.5 2.5 0 1 0 13 2ZM10 8A2 2 0 0 0 8 10V14A1.5 1.5 0 0 0 9.5 15.5H10V20A1 1 0 0 0 11 21H15A1 1 0 0 0 16 20V15.5H16.5A1.5 1.5 0 0 0 18 14V10A2 2 0 0 0 16 8Z"/>
+                                    <Label text="Feels Like"
+                                           styleClass="metric-name"/>
+                                </HBox>
+
+                                <Label fx:id="feelsLikeLabel"
+                                       text="--&#176;"
+                                       styleClass="metric-value"/>
+                            </VBox>
+
+                            <VBox maxWidth="Infinity"
+                                  GridPane.columnIndex="2"
+                                  GridPane.rowIndex="0"
+                                  styleClass="highlight-card">
+                                <HBox alignment="CENTER_LEFT" spacing="7">
+                                    <SVGPath styleClass="wind-icon"
+                                             content="M1 5H13C15 5 15 2 13 2C12.1 2 11.4 2.5 11 3.2L9.6 2.5C10.3 1 11.5 0.2 13 0.2C17.3 0.2 18 6.8 13 6.8H1ZM1 10H18C20 10 20 7 18 7C17 7 16.3 7.5 16 8.2L14.5 7.5C15.2 6 16.5 5.2 18 5.2C22.3 5.2 23 11.8 18 11.8H1ZM1 15H12C14 15 14 12 12 12C11.1 12 10.4 12.5 10 13.2L8.6 12.5C9.3 11 10.5 10.2 12 10.2C16.3 10.2 17 16.8 12 16.8H1Z"/>
+                                    <Label text="Wind Speed"
+                                           styleClass="metric-name"/>
+                                </HBox>
+
+                                <Label fx:id="windSpeedLabel"
+                                       text="-- mph"
+                                       styleClass="metric-value"/>
+                            </VBox>
+
+                            <VBox maxWidth="Infinity"
+                                  GridPane.columnIndex="0"
+                                  GridPane.rowIndex="1"
+                                  styleClass="highlight-card">
+                                <HBox alignment="CENTER_LEFT" spacing="7">
+                                    <SVGPath styleClass="uv-icon"
+                                             content="M11 0H13V4H11ZM3.5 2.1L6.3 4.9L4.9 6.3L2.1 3.5ZM20.5 2.1L21.9 3.5L19.1 6.3L17.7 4.9ZM0 11H4V13H0ZM20 11H24V13H20ZM4.9 17.7L6.3 19.1L3.5 21.9L2.1 20.5ZM17.7 19.1L19.1 17.7L21.9 20.5L20.5 21.9ZM11 20H13V24H11ZM12 6A6 6 0 1 0 12 18A6 6 0 1 0 12 6Z"/>
+                                    <Label text="UV Index"
+                                           styleClass="metric-name"/>
+                                </HBox>
+
+                                <Label fx:id="uvIndexLabel"
+                                       text="--"
+                                       styleClass="metric-value-small"/>
+                            </VBox>
+
+                            <VBox maxWidth="Infinity"
+                                  GridPane.columnIndex="1"
+                                  GridPane.rowIndex="1"
+                                  styleClass="highlight-card">
+                                <HBox alignment="CENTER_LEFT" spacing="7">
+                                    <SVGPath styleClass="sun-time-icon"
+                                             content="M6 10A6 6 0 0 1 18 10V12H6ZM2 12H22V14H2ZM11 1H13V5H11ZM3.8 4.2L5.2 2.8L8 5.6L6.6 7ZM18.8 2.8L20.2 4.2L17.4 7L16 5.6ZM1 8H5V10H1ZM19 8H23V10H19ZM11 23V18.8L8.7 21.1L7.3 19.7L12 15L16.7 19.7L15.3 21.1L13 18.8V23Z"/>
+                                    <Label text="Sunrise"
+                                           styleClass="metric-name"/>
+                                </HBox>
+
+                                <Label fx:id="sunriseLabel"
+                                       text="--"
+                                       styleClass="metric-value-small"/>
+                            </VBox>
+
+                            <VBox maxWidth="Infinity"
+                                  GridPane.columnIndex="2"
+                                  GridPane.rowIndex="1"
+                                  styleClass="highlight-card">
+                                <HBox alignment="CENTER_LEFT" spacing="7">
+                                    <SVGPath styleClass="sun-time-icon"
+                                             content="M6 10A6 6 0 0 1 18 10V12H6ZM2 12H22V14H2ZM11 1H13V5H11ZM3.8 4.2L5.2 2.8L8 5.6L6.6 7ZM18.8 2.8L20.2 4.2L17.4 7L16 5.6ZM1 8H5V10H1ZM19 8H23V10H19ZM11 16H13V20.2L15.3 17.9L16.7 19.3L12 24L7.3 19.3L8.7 17.9L11 20.2Z"/>
+                                    <Label text="Sunset"
+                                           styleClass="metric-name"/>
+                                </HBox>
+
+                                <Label fx:id="sunsetLabel"
+                                       text="--"
+                                       styleClass="metric-value-small"/>
+                            </VBox>
+
+                        </GridPane>
+                    </VBox>
+                </HBox>
+
+                <!-- Bottom row -->
+                <HBox spacing="20">
+
+                    <!-- Favorites -->
+                    <VBox spacing="14"
+                          prefWidth="260"
+                          prefHeight="235"
+                          maxHeight="235"
+                          styleClass="dashboard-card">
+
+                        <HBox alignment="CENTER_LEFT">
+                            <Label text="Favorite ZIP Codes"
+                                   styleClass="section-title"/>
+
+                            <Region HBox.hgrow="ALWAYS"/>
+
+                            <Label fx:id="favoritesCounter"
+                                   text="0 / 5"
+                                   styleClass="counter-label"/>
+                        </HBox>
+
+                        <ScrollPane fitToWidth="true"
+                                    hbarPolicy="NEVER"
+                                    vbarPolicy="AS_NEEDED"
+                                    prefHeight="172"
+                                    maxHeight="172"
+                                    styleClass="favorites-scroll">
+
+                            <VBox fx:id="favoritesPane"
+                                  spacing="8"
+                                  styleClass="favorites-list"/>
+                        </ScrollPane>
+                    </VBox>
+
+                    <!-- Weekly forecast -->
+                    <VBox spacing="14"
+                          HBox.hgrow="ALWAYS"
+                          prefHeight="235"
+                          maxHeight="235"
+                          styleClass="dashboard-card">
+
+                        <StackPane>
+                            <Label fx:id="forecastTitle"
+                                   text="7 Day Forecast"
+                                   StackPane.alignment="CENTER"
+                                   styleClass="section-title"/>
+
+                            <HBox StackPane.alignment="CENTER_RIGHT"
+                                  styleClass="forecast-view-switch">
+                                <Button fx:id="dailyForecastButton"
+                                        text="7 Day"
+                                        onAction="#showDailyForecast"
+                                        styleClass="forecast-view-button, forecast-view-button-selected"/>
+                                <Button fx:id="hourlyForecastButton"
+                                        text="Hourly"
+                                        onAction="#showHourlyForecast"
+                                        styleClass="forecast-view-button"/>
+                            </HBox>
+                        </StackPane>
+
+                        <HBox fx:id="forecastPane"
+                              alignment="CENTER"
+                              spacing="8"
+                              prefHeight="165">
+                            <VBox alignment="CENTER" spacing="7">
+                                <SVGPath styleClass="forecast-empty-icon"
+                                         fillRule="EVEN_ODD"
+                                         content="M12 1C7.6 1 4 4.6 4 9C4 14.8 12 23 12 23C12 23 20 14.8 20 9C20 4.6 16.4 1 12 1ZM12 5.5A3.5 3.5 0 1 1 12 12.5A3.5 3.5 0 1 1 12 5.5Z"/>
+                                <Label text="No ZIP code selected"
+                                       styleClass="forecast-empty-title"/>
+                                <Label text="Search for a location to view its 7-day forecast."
+                                       styleClass="forecast-empty-text"/>
+                            </VBox>
+                        </HBox>
+                    </VBox>
+                </HBox>
+
+                <Label text="Weather data provided by Open-Meteo"
+                       maxWidth="Infinity"
+                       alignment="CENTER"
+                       styleClass="data-attribution"/>
+
+        </VBox>
+
+    </center>
+
+</BorderPane>
+
+    <StackPane fx:id="weatherLoadingOverlay"
+               managed="false"
+               visible="false"
+               styleClass="weather-loading-overlay">
+        <ProgressIndicator progress="-1"
+                           minWidth="46"
+                           prefWidth="46"
+                           maxWidth="46"
+                           minHeight="46"
+                           prefHeight="46"
+                           maxHeight="46"
+                           styleClass="weather-loading-indicator"/>
+    </StackPane>
+
+</StackPane>
