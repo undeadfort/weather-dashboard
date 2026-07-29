@@ -6,7 +6,7 @@ Weather Dashboard is a native JavaFX desktop application that retrieves current 
 
 ## Application Screenshot
 
-![Weather Dashboard main screen](SCREENSHOTS/weather-dashboard-main.png)
+![Weather Dashboard main screen](weatherdashboard/SCREENSHOTS/weather-dashboard-main.png)
 
 ## Features
 
@@ -47,7 +47,7 @@ Weather Dashboard is a native JavaFX desktop application that retrieves current 
 
 ## How the Code Is Organized
 
-Most of the program is inside `src/main`. I separated the Java classes by what
+Most of the program is inside `weatherdashboard/src/main`. I separated the Java classes by what
 they are responsible for:
 
 - `database` handles SQLite, saved favorites, and application settings.
@@ -56,8 +56,9 @@ they are responsible for:
 - `util` contains ZIP-code validation and unit conversions.
 - `resources` contains the FXML layout, CSS design, and application icon.
 
-The JUnit tests are under `src/test`. The project also includes `pom.xml` for
-Maven dependencies and `weather-dashboard.db` for the saved SQLite data.
+The JUnit tests are under `weatherdashboard/src/test`. The project folder also
+includes `pom.xml` for Maven dependencies and `weather-dashboard.db` for the
+saved SQLite data.
 
 ## Requirements
 
@@ -72,7 +73,7 @@ No weather API key is required.
 
 1. Clone or download the repository.
 2. Open IntelliJ IDEA.
-3. Select **Open** and choose the `WeatherDashboard` folder.
+3. Select **Open** and choose the `weatherdashboard` folder inside the downloaded repository.
 4. Allow IntelliJ to import the project as a Maven project.
 5. Set the Project SDK to JDK 21 or newer.
 6. Open `Launcher.java`.
@@ -82,11 +83,11 @@ The application automatically creates `weather-dashboard.db` if the database fil
 
 ## Maven Commands
 
-I used Windows for this project. From the project folder, the app can be started
-with `mvn clean javafx:run`.
+I used Windows for this project. Open a terminal in the `weatherdashboard`
+folder and start the app with `mvn clean javafx:run`.
 
 The tests can be run with `mvn test`. In IntelliJ, you can also
-right-click the `src/test` folder and select **Run Tests**.
+right-click the `weatherdashboard/src/test` folder and select **Run Tests**.
 
 The current test suite verifies:
 
