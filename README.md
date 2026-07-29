@@ -138,7 +138,3 @@ The database is initialized automatically when the application launches.
 ## Data Sources
 
 Weather data is provided by [Open-Meteo](https://open-meteo.com/). U.S. ZIP code location information is provided by [Zippopotam.us](https://www.zippopotam.us/).
-
-## Author
-
-Pablo Gallardo
