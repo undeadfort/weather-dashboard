@@ -4,6 +4,10 @@
 
 Weather Dashboard is a native JavaFX desktop application that retrieves current weather information and forecasts using a U.S. ZIP code. It combines a polished graphical interface with SQLite persistence, full CRUD operations for favorite locations, input validation, exception handling, unit conversion, and saved application settings.
 
+## Application Screenshot
+
+![Weather Dashboard main screen](docs/screenshots/weather-dashboard-main.png)
+
 ## Student
 
 **Pablo Gallardo**
