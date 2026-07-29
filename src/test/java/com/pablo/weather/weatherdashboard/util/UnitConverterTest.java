@@ -48,4 +48,23 @@ class UnitConverterTest {
                 0.001
         );
     }
+
+    @Test
+    void negativeFortyIsTheSameInBothTemperatureScales() {
+        assertEquals(
+                -40.0,
+                UnitConverter.fahrenheitToCelsius(-40.0),
+                0.001
+        );
+    }
+
+    @Test
+    void convertsOneMilePerHour() {
+        assertEquals(
+                1.609344,
+                UnitConverter
+                        .milesPerHourToKilometersPerHour(1.0),
+                0.000001
+        );
+    }
 }

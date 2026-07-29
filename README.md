@@ -91,11 +91,12 @@ right-click the `src/test` folder and select **Run Tests**.
 The current test suite verifies:
 
 - Valid and invalid ZIP code inputs
-- Empty and null ZIP values
-- Fahrenheit-to-Celsius conversion
-- Miles-per-hour-to-kilometers-per-hour conversion
+- Temperature and wind-speed conversions
+- Creating, reading, updating, and deleting favorites
+- Duplicate favorites and the five-favorite limit
+- Saving and loading application settings
 
-Current result: **8 tests passed, 0 tests failed**.
+Current result: **21 tests passed, 0 tests failed**.
 
 ## Database
 

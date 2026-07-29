@@ -27,4 +27,21 @@ class ZipCodeValidatorTest {
         assertFalse(ZipCodeValidator.isValid(""));
         assertFalse(ZipCodeValidator.isValid(null));
     }
+
+    @Test
+    void acceptsZipCodeThatStartsWithZero() {
+        assertTrue(ZipCodeValidator.isValid("02108"));
+    }
+
+    @Test
+    void rejectsZipCodeWithTooManyDigits() {
+        assertFalse(ZipCodeValidator.isValid("123456"));
+    }
+
+    @Test
+    void rejectsSpacesAndZipPlusFourFormat() {
+        assertFalse(ZipCodeValidator.isValid(" 33172"));
+        assertFalse(ZipCodeValidator.isValid("33172 "));
+        assertFalse(ZipCodeValidator.isValid("33172-1234"));
+    }
 }

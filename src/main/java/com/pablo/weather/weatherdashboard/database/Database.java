@@ -7,14 +7,20 @@ import java.sql.Statement;
 
 public final class Database {
 
-    private static final String DATABASE_URL =
+    private static final String DEFAULT_DATABASE_URL =
             "jdbc:sqlite:weather-dashboard.db";
+    private static final String DATABASE_URL_PROPERTY =
+            "weather.dashboard.database.url";
 
     private Database() {
     }
 
     public static Connection connect() throws SQLException {
-        return DriverManager.getConnection(DATABASE_URL);
+        String databaseUrl = System.getProperty(
+                DATABASE_URL_PROPERTY,
+                DEFAULT_DATABASE_URL
+        );
+        return DriverManager.getConnection(databaseUrl);
     }
 
     public static void initialize() {
